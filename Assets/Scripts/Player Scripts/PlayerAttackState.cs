@@ -60,6 +60,8 @@ public class PlayerAttackState : IState
 
     private void PlayAttackAnimation()
     {
+        player.Sword.SwordParticle.Play();
+
         int randomIndex = Random.Range(0, attackAnimCount);
         player.Animator.SetInteger("AttackIndex", randomIndex);
         player.Animator.SetTrigger("Attack");
@@ -82,6 +84,8 @@ public class PlayerAttackState : IState
         animationFinished = true;
 
         progressBarController.HideProgressBar();
+
+        player.Sword.SwordParticle.Stop();
     }
 
     public void OnAttackAnimationHit(List<EnemyHealthController> enemiesOnTarget)
