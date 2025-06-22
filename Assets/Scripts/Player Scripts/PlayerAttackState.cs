@@ -66,17 +66,20 @@ public class PlayerAttackState : IState
         player.Animator.SetInteger("AttackIndex", randomIndex);
         player.Animator.SetTrigger("Attack");
 
-        // Combo UI
-        if (currentCombo == 1)
+        if (player.AttackZoneController.EnemiesOnTarget.Count > 0)
         {
-            ActionManager.OnShowAttackMessage("x2 COMBO!");
-        }
-        else if (currentCombo == 2)
-        {
-            ActionManager.OnShowAttackMessage("x3 COMBO!\nCRITICAL HIT!");
-        }
+            // Combo UI
+            if (currentCombo == 1)
+            {
+                ActionManager.OnShowAttackMessage("x2 COMBO!");
+            }
+            else if (currentCombo == 2)
+            {
+                ActionManager.OnShowAttackMessage("x3 COMBO!\nCRITICAL HIT!");
+            }
 
-        progressBarController.ShowProgressBar(necessaryInputTime);
+            progressBarController.ShowProgressBar(necessaryInputTime);
+        }
     }
 
     public void OnAttackAnimationEnd()
@@ -98,7 +101,7 @@ public class PlayerAttackState : IState
             {
                 enemy.TakeDamage(player.Sword.SwordPower);
             }
-            else if(currentCombo >= 2)
+            else if (currentCombo >= 2)
             {
                 enemy.TakeDamage(player.Sword.SwordPower * 2);
             }
