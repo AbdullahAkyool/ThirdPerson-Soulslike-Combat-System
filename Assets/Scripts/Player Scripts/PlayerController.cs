@@ -27,6 +27,16 @@ public class PlayerController : MonoBehaviour
 
     private UIManager uiManager;
 
+    // Yerçekimi ve zemin kontrolü
+    [Header("Gravity Settings")]
+    [SerializeField] private float gravity = -9.81f;
+    private float verticalVelocity = 0f;
+    private bool isGrounded;
+
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundDistance = 0.3f;
+    [SerializeField] private LayerMask groundMask;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -122,7 +132,22 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        characterController.Move(move.normalized * moveSpeed * speedMultiplier * Time.deltaTime);
+        // yercekimi
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && verticalVelocity < 0)
+        {
+            verticalVelocity = -2f;
+        }
+        else
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+
+        Vector3 velocity = move.normalized * moveSpeed * speedMultiplier;
+        velocity.y = verticalVelocity;
+
+        characterController.Move(velocity * Time.deltaTime);
     }
     public Vector2 GetInputRaw()
     {
