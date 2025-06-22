@@ -11,6 +11,11 @@ public class EnemyHealthController : MonoBehaviour
     [SerializeField] private EnemyHealthBarController healthBarController;
     public EnemyHealthBarController HealthBarController => healthBarController;
 
+    [SerializeField] private ParticleSystem hitParticle;
+    public ParticleSystem HitParticle => hitParticle;
+    [SerializeField] private ParticleSystem bloodParticle;
+    public ParticleSystem BloodParticle => bloodParticle;
+
     void Awake()
     {
         enemyController = GetComponent<EnemyController>();

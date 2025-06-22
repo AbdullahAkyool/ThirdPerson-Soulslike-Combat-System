@@ -47,6 +47,9 @@ public class EnemyDieState : IState
             yield return null;
         }
 
+        enemy.EnemyHealthController.HitParticle.Stop();
+        enemy.EnemyHealthController.BloodParticle.Stop();
+
         yield return new WaitForSeconds(postDissolveDelay);
 
         currentEnemyPosition.y -= .5f;
