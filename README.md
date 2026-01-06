@@ -1,6 +1,4 @@
-# 🎮 Download Project
+## 🎮 A third-person melee combat prototype inspired by modern action RPGs and soulslike combat design (e.g., timing-based combos, lock-on targeting, weighty animations).
 
-## After downloading, unzip the file and start playing the game — no installation required.
 
-📦 [Download from Google Drive](https://drive.google.com/drive/folders/1I-pbu5OoUd4LC_5Ku7P5KKdCkE3M-kpx?usp=drive_link)
 
